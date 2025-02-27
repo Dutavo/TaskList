@@ -2,6 +2,8 @@ package com.dutavo.tasklist.view
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Scaffold
@@ -16,6 +18,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.dutavo.tasklist.R
+import com.dutavo.tasklist.itemLista.TarefaItem
+import com.dutavo.tasklist.model.Tarefa
 import com.dutavo.tasklist.ui.theme.Purple40
 
 
@@ -52,6 +56,32 @@ fun ListaTarefas(
             }
         }
     ) {
-
+        val listaTarefas: MutableList<Tarefa> = mutableListOf(
+            Tarefa(
+                "Jogar",
+                "Jogar uma partida",
+                0
+            ),
+            Tarefa(
+                "Academia",
+                "Ir executar treino de superiores",
+                1
+            ),
+            Tarefa(
+                "Programar",
+                "Desenvolver um aplicativo",
+                2
+            ),
+            Tarefa(
+                "Cozinhar",
+                "Fazer as marmita da semana",
+                3
+            )
+        )
+        LazyColumn {
+            itemsIndexed(listaTarefas){ position, _ ->
+                TarefaItem(position, listaTarefas)
+            }
+        }
     }
 }
